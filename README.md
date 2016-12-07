@@ -1,6 +1,7 @@
 
-空的Web项目示例，后续分支在此基础上增加功能
+空的Web项目示例
 ===============================
+增加基于tomcat的javassist功能
 
 ###1. Technologies used
 * Gradle 3
