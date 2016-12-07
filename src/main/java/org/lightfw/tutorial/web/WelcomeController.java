@@ -1,5 +1,6 @@
 package org.lightfw.tutorial.web;
 
+import org.lightfw.tutorial.helper.Javassitee;
 import org.lightfw.tutorial.service.HelloWorldService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -15,38 +16,39 @@ import java.util.Map;
 @Controller
 public class WelcomeController {
 
-	private final Logger logger = LoggerFactory.getLogger(WelcomeController.class);
-	private final HelloWorldService helloWorldService;
+    private final Logger logger = LoggerFactory.getLogger(WelcomeController.class);
+    private final HelloWorldService helloWorldService;
 
-	@Autowired
-	public WelcomeController(HelloWorldService helloWorldService) {
-		this.helloWorldService = helloWorldService;
-	}
+    @Autowired
+    public WelcomeController(HelloWorldService helloWorldService) {
+        this.helloWorldService = helloWorldService;
+    }
 
-	@RequestMapping(value = "/", method = RequestMethod.GET)
-	public String index(Map<String, Object> model) {
+    @RequestMapping(value = "/", method = RequestMethod.GET)
+    public String index(Map<String, Object> model) {
 
-		logger.debug("index() is executed!");
+        logger.debug("index() is executed!");
 
-		model.put("title", helloWorldService.getTitle(""));
-		model.put("msg", helloWorldService.getDesc());
-		
-		return "index";
-	}
+        model.put("title", helloWorldService.getTitle(""));
+        model.put("msg", helloWorldService.getDesc());
 
-	@RequestMapping(value = "/hello/{name:.+}", method = RequestMethod.GET)
-	public ModelAndView hello(@PathVariable("name") String name) {
+        new Javassitee().execute(); //调用被Mock的类
+        return "index";
+    }
 
-		logger.debug("hello() is executed - $name {}", name);
+    @RequestMapping(value = "/hello/{name:.+}", method = RequestMethod.GET)
+    public ModelAndView hello(@PathVariable("name") String name) {
 
-		ModelAndView model = new ModelAndView();
-		model.setViewName("index");
-		
-		model.addObject("title", helloWorldService.getTitle(name));
-		model.addObject("msg", helloWorldService.getDesc());
-		
-		return model;
+        logger.debug("hello() is executed - $name {}", name);
 
-	}
+        ModelAndView model = new ModelAndView();
+        model.setViewName("index");
+
+        model.addObject("title", helloWorldService.getTitle(name));
+        model.addObject("msg", helloWorldService.getDesc());
+
+        return model;
+
+    }
 
 }

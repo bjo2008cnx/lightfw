@@ -20,7 +20,6 @@ public class Javassitee {
     }
 
     public void execute() {
-        System.out.println(name);
-        System.out.println("execute ok");
+        System.out.println("execute Javassitee defaul logic ok");
     }
 }
