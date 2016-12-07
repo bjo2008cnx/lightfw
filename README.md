@@ -11,8 +11,9 @@
 
 ###2. To Run this project locally
 $ gradle jettyRun
-
-###3Access.
  access http://localhost:8080/spring4
+
+###3. Dependency project
+https://github.com/bjo2008cnx/lightfw-util
 
 
