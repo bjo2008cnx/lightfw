@@ -9,6 +9,32 @@
 <spring:url value="/resources/core/css/bootstrap.min.css" var="bootstrapCss" />
 <link href="${bootstrapCss}" rel="stylesheet" />
 <link href="${coreCss}" rel="stylesheet" />
+    <script type="text/javascript">
+        function saveUser() {
+            //$(document).ready(function(){
+            var saveDataAry=[];
+            var data1='{"userName":"test","address":"gz"}';
+            /*  var data2={"userName":"ququ","address":"gr"};
+            var  dataJson ;
+           alert("save user");
+            saveDataAry.push(data1);
+            saveDataAry.push(data2);
+            dataJson =JSON.stringify(saveDataAry);
+            alert(dataJson);
+            */
+
+            $.ajax({
+                type:"POST",
+                url:"user/saveUser",
+                //dataType:"json",
+                contentType:"application/json",
+                data:data1,
+                success:function(data){
+                    alert('success');
+                }
+            });
+        };
+    </script>
 </head>
 
 <nav class="navbar navbar-inverse navbar-fixed-top">
@@ -32,7 +58,8 @@
 			</c:if>
 		</p>
 		<p>
-			<a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a>
+			<button onClick="javascript:saveUser();">Learn more</button>
+			<button onClick="javascript:alert('good');">Learn morex</button>
 		</p>
 	</div>
 </div>
@@ -68,9 +95,9 @@
 <spring:url value="/resources/core/css/hello.js" var="coreJs" />
 <spring:url value="/resources/core/css/bootstrap.min.js" var="bootstrapJs" />
 
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 <script src="${coreJs}"></script>
 <script src="${bootstrapJs}"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 
 </body>
 </html>
